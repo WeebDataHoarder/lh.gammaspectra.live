@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Lightning Hoarder : Bitcoin Lightning Network Node</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="https://lh.gammaspectra.live/" rel="canonical">
+		<link href="./bootstrap.min.css" rel="stylesheet">
+		<link href="./style.css" rel="stylesheet">
+		<style type="text/css">
+body {
+	background: #ddd;
+	z-index : 999;
+}
+
+h1 {
+	font-size: 55px;
+}
+
+h1 a {
+	text-decoration: none!important;
+}
+
+h1 img {
+	position: relative;
+	top: -5px;
+}
+
+textarea {
+	width: 100%;
+	height: 80px;
+	font-size: 12px;
+}
+
+.jumbotron {
+	background-color: transparent;
+}
+
+main {
+	display: block;
+}
+
+p a {
+	text-decoration: underline;
+}
+		</style>
+	</head>
+	<body>
+		<header class="jumbotron text-center">
+			<h1><a href="https://lh.gammaspectra.live/" rel="home"><img src="./bolt.svg" height="55" alt="Lightning Hoarder"> Lightning Hoarder</a></h1>
+		</header>
+		<main class="container mb-0">
+			<div class="row justify-content-center">
+				<article class="col-sm-4 flex-first flex-md-unordered">
+					<h3>Bitcoin Lightning Network Node</h3>
+					<p>The <strong>Lightning Network</strong> is a second layer payment protocol that operates on top of <strong>Bitcoin</strong>. It enables instant and cheap off-chain transactions between participating nodes. </p>
+					<p>To use the Lightning Network, every end user must be connected to enough <strong>well-connected nodes</strong>. That ensures that there will be network paths for every Bitcoin payment.</p>
+					<p><strong>Lightning Hoarder</strong> is a volunteer-run mainnet lightning node. It is trying to become well-connected through balancing and community initiatives like the <a href="https://www.reddit.com/r/TheLightningNetwork/" target="_blank">Reddit Megahub Triangle on /r/TheLightningNetwork</a>. This node tries to use latest LND releases with well-configured settings.</p>
+					<p>This node is run on a HA cluster, on reliable NVMe pools on Ceph rbd, with backups in place. It is backed by batteries and split electricity circuits from other equipment to maintain uptime.</p>
+					<p>Fees are automatically adjusted to prefer a balanced channel over time. If you are part of the Reddit Megahub, lower fees are applied.</p>
+					<p>Feel free to <strong>open a channel</strong> to this node with the information on the sidebar.</p>
+					<hr>
+					<h4>Features</h4>
+					<p>
+						<ul>
+							<li>Channels will be kept open as long as possible</li>
+							<li>Auto-balanced channel fees</li>
+							<li>Tor & Clearnet addresses</li>
+							<li>Watchtower backed channels</li>
+							<li><strong>Anchor commitments</strong> enabled</li>
+							<li><strong>WUMBO channel support</strong> enabled</li>
+							<li>Economical estimate for co-operative closes</li>
+							<li>KeySend enabled</li>
+						</ul>
+					</p>
+				</article>
+				<aside class="col-sm-4 flex-first flex-md-unordered">
+					<h3>Node Info (mainnet)</h3>
+					<p><svg alt="QR Code" shape-rendering="crispEdges" height="350" width="350" viewBox="0 0 41 41"><path fill="#FFFFFF" d="M0,0 h41v41H0z"></path><path fill="#000000" d="M0 0h7v1H0zM9 0h5v1H9zM16 0h2v1H16zM19 0h1v1H19zM21 0h1v1H21zM23 0h1v1H23zM26 0h1v1H26zM30 0h3v1H30zM34,0 h7v1H34zM0 1h1v1H0zM6 1h1v1H6zM8 1h4v1H8zM13 1h4v1H13zM20 1h2v1H20zM24 1h2v1H24zM27 1h1v1H27zM29 1h1v1H29zM32 1h1v1H32zM34 1h1v1H34zM40,1 h1v1H40zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM11 2h1v1H11zM19 2h1v1H19zM21 2h3v1H21zM26 2h1v1H26zM28 2h1v1H28zM34 2h1v1H34zM36 2h3v1H36zM40,2 h1v1H40zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM8 3h2v1H8zM12 3h4v1H12zM17 3h2v1H17zM22 3h1v1H22zM25 3h5v1H25zM32 3h1v1H32zM34 3h1v1H34zM36 3h3v1H36zM40,3 h1v1H40zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM10 4h1v1H10zM12 4h1v1H12zM16 4h1v1H16zM19 4h3v1H19zM23 4h1v1H23zM25 4h2v1H25zM30 4h3v1H30zM34 4h1v1H34zM36 4h3v1H36zM40,4 h1v1H40zM0 5h1v1H0zM6 5h1v1H6zM8 5h1v1H8zM10 5h2v1H10zM15 5h2v1H15zM21 5h2v1H21zM24 5h1v1H24zM27 5h4v1H27zM34 5h1v1H34zM40,5 h1v1H40zM0 6h7v1H0zM8 6h1v1H8zM10 6h1v1H10zM12 6h1v1H12zM14 6h1v1H14zM16 6h1v1H16zM18 6h1v1H18zM20 6h1v1H20zM22 6h1v1H22zM24 6h1v1H24zM26 6h1v1H26zM28 6h1v1H28zM30 6h1v1H30zM32 6h1v1H32zM34,6 h7v1H34zM11 7h1v1H11zM14 7h1v1H14zM16 7h1v1H16zM21 7h4v1H21zM26 7h1v1H26zM28 7h1v1H28zM30 7h3v1H30zM0 8h5v1H0zM6 8h6v1H6zM13 8h1v1H13zM16 8h3v1H16zM22 8h1v1H22zM24 8h2v1H24zM27 8h7v1H27zM35 8h1v1H35zM37 8h1v1H37zM39 8h1v1H39zM0 9h1v1H0zM3 9h3v1H3zM7 9h2v1H7zM11 9h1v1H11zM13 9h2v1H13zM19 9h2v1H19zM23 9h1v1H23zM26 9h1v1H26zM31 9h1v1H31zM33 9h4v1H33zM39,9 h2v1H39zM0 10h1v1H0zM3 10h2v1H3zM6 10h1v1H6zM8 10h2v1H8zM15 10h4v1H15zM20 10h1v1H20zM22 10h1v1H22zM24 10h2v1H24zM27 10h3v1H27zM35 10h1v1H35zM37 10h1v1H37zM0 11h4v1H0zM12 11h1v1H12zM14 11h2v1H14zM18 11h4v1H18zM24 11h1v1H24zM26 11h1v1H26zM34 11h1v1H34zM36 11h1v1H36zM39 11h1v1H39zM0 12h1v1H0zM3 12h1v1H3zM5 12h2v1H5zM8 12h1v1H8zM10 12h1v1H10zM12 12h3v1H12zM17 12h1v1H17zM20 12h1v1H20zM23 12h7v1H23zM31 12h1v1H31zM33 12h1v1H33zM35 12h1v1H35zM37 12h2v1H37zM40,12 h1v1H40zM0 13h2v1H0zM5 13h1v1H5zM7 13h1v1H7zM9 13h2v1H9zM12 13h2v1H12zM16 13h1v1H16zM18 13h6v1H18zM28 13h1v1H28zM30 13h3v1H30zM34 13h1v1H34zM36 13h1v1H36zM39,13 h2v1H39zM2 14h2v1H2zM5 14h4v1H5zM15 14h1v1H15zM17 14h1v1H17zM20 14h1v1H20zM22 14h1v1H22zM25 14h1v1H25zM27 14h2v1H27zM30 14h1v1H30zM33 14h1v1H33zM35 14h1v1H35zM38 14h1v1H38zM3 15h1v1H3zM7 15h3v1H7zM14 15h1v1H14zM16 15h1v1H16zM19 15h1v1H19zM21 15h1v1H21zM24 15h1v1H24zM27 15h1v1H27zM32 15h1v1H32zM36 15h2v1H36zM39,15 h2v1H39zM0 16h1v1H0zM3 16h2v1H3zM6 16h4v1H6zM12 16h2v1H12zM16 16h3v1H16zM20 16h1v1H20zM25 16h2v1H25zM29 16h1v1H29zM32 16h2v1H32zM38 16h2v1H38zM0 17h6v1H0zM8 17h1v1H8zM10 17h1v1H10zM13 17h2v1H13zM19 17h1v1H19zM21 17h5v1H21zM28 17h4v1H28zM34 17h4v1H34zM39,17 h2v1H39zM1 18h3v1H1zM6 18h1v1H6zM10 18h1v1H10zM13 18h5v1H13zM20 18h3v1H20zM24 18h1v1H24zM27 18h2v1H27zM32 18h2v1H32zM35 18h2v1H35zM3 19h3v1H3zM7 19h1v1H7zM10 19h1v1H10zM14 19h1v1H14zM21 19h3v1H21zM27 19h2v1H27zM31 19h6v1H31zM39 19h1v1H39zM4 20h4v1H4zM13 20h3v1H13zM17 20h1v1H17zM19 20h2v1H19zM22 20h1v1H22zM25 20h3v1H25zM29 20h2v1H29zM35 20h1v1H35zM37 20h2v1H37zM40,20 h1v1H40zM1 21h2v1H1zM7 21h1v1H7zM10 21h4v1H10zM19 21h1v1H19zM21 21h3v1H21zM28 21h1v1H28zM31 21h4v1H31zM36 21h1v1H36zM38 21h1v1H38zM40,21 h1v1H40zM0 22h2v1H0zM4 22h1v1H4zM6 22h1v1H6zM8 22h3v1H8zM15 22h1v1H15zM17 22h2v1H17zM20 22h3v1H20zM25 22h3v1H25zM29 22h2v1H29zM32 22h2v1H32zM35 22h1v1H35zM37 22h3v1H37zM2 23h3v1H2zM8 23h1v1H8zM11 23h2v1H11zM15 23h2v1H15zM18 23h4v1H18zM23 23h2v1H23zM31 23h1v1H31zM33 23h1v1H33zM37 23h1v1H37zM39 23h1v1H39zM0 24h3v1H0zM5 24h2v1H5zM8 24h3v1H8zM12 24h2v1H12zM15 24h6v1H15zM25 24h2v1H25zM28 24h3v1H28zM32 24h1v1H32zM37 24h3v1H37zM0 25h2v1H0zM4 25h2v1H4zM7 25h1v1H7zM11 25h1v1H11zM13 25h2v1H13zM19 25h1v1H19zM22 25h3v1H22zM31 25h1v1H31zM33 25h4v1H33zM39,25 h2v1H39zM0 26h2v1H0zM3 26h2v1H3zM6 26h1v1H6zM9 26h1v1H9zM13 26h4v1H13zM18 26h1v1H18zM20 26h2v1H20zM27 26h2v1H27zM34 26h1v1H34zM36 26h1v1H36zM1 27h1v1H1zM3 27h3v1H3zM7 27h1v1H7zM12 27h1v1H12zM15 27h2v1H15zM18 27h1v1H18zM21 27h3v1H21zM26 27h2v1H26zM31 27h3v1H31zM35 27h2v1H35zM39,27 h2v1H39zM1 28h3v1H1zM6 28h1v1H6zM8 28h1v1H8zM13 28h1v1H13zM15 28h1v1H15zM17 28h1v1H17zM19 28h1v1H19zM22 28h1v1H22zM25 28h6v1H25zM32 28h1v1H32zM37 28h3v1H37zM0 29h3v1H0zM9 29h1v1H9zM11 29h2v1H11zM14 29h1v1H14zM16 29h1v1H16zM18 29h7v1H18zM28 29h1v1H28zM31 29h2v1H31zM34 29h3v1H34zM38 29h1v1H38zM40,29 h1v1H40zM0 30h1v1H0zM3 30h1v1H3zM6 30h5v1H6zM13 30h6v1H13zM21 30h2v1H21zM27 30h2v1H27zM33 30h1v1H33zM36 30h1v1H36zM39 30h1v1H39zM0 31h1v1H0zM3 31h3v1H3zM7 31h3v1H7zM11 31h1v1H11zM14 31h2v1H14zM19 31h3v1H19zM24 31h1v1H24zM26 31h1v1H26zM32 31h1v1H32zM35 31h3v1H35zM39,31 h2v1H39zM0 32h1v1H0zM2 32h1v1H2zM4 32h4v1H4zM10 32h1v1H10zM12 32h2v1H12zM15 32h3v1H15zM20 32h1v1H20zM22 32h2v1H22zM25 32h3v1H25zM29 32h2v1H29zM32 32h5v1H32zM38 32h1v1H38zM8 33h1v1H8zM11 33h1v1H11zM13 33h2v1H13zM18 33h2v1H18zM21 33h1v1H21zM23 33h3v1H23zM28 33h1v1H28zM31 33h2v1H31zM36 33h1v1H36zM39,33 h2v1H39zM0 34h7v1H0zM8 34h3v1H8zM13 34h1v1H13zM15 34h1v1H15zM18 34h1v1H18zM20 34h2v1H20zM26 34h3v1H26zM31 34h2v1H31zM34 34h1v1H34zM36 34h1v1H36zM0 35h1v1H0zM6 35h1v1H6zM9 35h1v1H9zM12 35h1v1H12zM21 35h2v1H21zM26 35h3v1H26zM30 35h1v1H30zM32 35h1v1H32zM36 35h1v1H36zM39 35h1v1H39zM0 36h1v1H0zM2 36h3v1H2zM6 36h1v1H6zM8 36h1v1H8zM10 36h2v1H10zM13 36h1v1H13zM15 36h3v1H15zM25 36h1v1H25zM27 36h3v1H27zM32 36h8v1H32zM0 37h1v1H0zM2 37h3v1H2zM6 37h1v1H6zM8 37h2v1H8zM11 37h2v1H11zM14 37h1v1H14zM16 37h1v1H16zM19 37h5v1H19zM26 37h1v1H26zM28 37h1v1H28zM30 37h1v1H30zM38 37h2v1H38zM0 38h1v1H0zM2 38h3v1H2zM6 38h1v1H6zM8 38h3v1H8zM15 38h1v1H15zM17 38h2v1H17zM21 38h2v1H21zM27 38h2v1H27zM31 38h1v1H31zM33 38h4v1H33zM39,38 h2v1H39zM0 39h1v1H0zM6 39h1v1H6zM8 39h1v1H8zM10 39h1v1H10zM12 39h1v1H12zM15 39h1v1H15zM19 39h1v1H19zM21 39h2v1H21zM26 39h1v1H26zM31 39h2v1H31zM39 39h1v1H39zM0 40h7v1H0zM8 40h4v1H8zM13 40h1v1H13zM15 40h1v1H15zM17 40h1v1H17zM20 40h1v1H20zM24 40h4v1H24zM29 40h1v1H29zM31 40h1v1H31zM33 40h1v1H33zM36 40h3v1H36z"></path></svg>
+					<p><textarea readonly="" onclick="this.focus();this.select()" id="code">02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae@bllbkxh4k372lttsdnwgm54csziw3sham5y3qbqn5yq2fo3pm2gpapqd.onion:9735</textarea>
+					<input type="button" value="Copy" onclick="copyField(&#39;code&#39;);this.disabled=true;this.value=&#39;Copied&#39;;"></p>
+					<p>Minimum channel size: 250,000 satoshi</p>
+					<p>Recommended channel size: 1,000,000+ satoshi</p>
+					<p>Clearnet address on 1ML.com<br/>Tor preferred.</p>
+					<p>
+						<a href="https://1ml.com/node/02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae" target="_blank">Node in 1ML.com</a></br>
+						<a href="https://amboss.space/node/02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae" target="_blank">Node in amboss.space</a>
+					</p>
+				</aside>
+			</div>
+		</main>
+		<footer class="jumbotron text-center">
+			<p></p>
+		</footer>
+		<script type="text/javascript">
+			function copyField(id) {
+				var field = document.getElementById(id);
+				field.focus();
+				field.setSelectionRange(0, field.value.length);
+				document.execCommand("copy");
+			}
+		</script>
+</body>
+
+
+</html>
