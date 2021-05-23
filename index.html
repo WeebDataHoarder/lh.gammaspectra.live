@@ -68,6 +68,11 @@ object.inline-icon {
 svg.inline-icon, img.inline-icon {
 	height: 1em;
 }
+
+.info-text {
+	text-decoration: underline;
+	text-decoration-style: dotted;
+}
 		</style>
 	</head>
 	<body>
@@ -80,8 +85,8 @@ svg.inline-icon, img.inline-icon {
 					<h3>Bitcoin Lightning Network Node</h3>
 					<p>The <strong>Lightning Network</strong> is a second layer payment protocol that operates on top of <strong>Bitcoin</strong>. It enables instant and cheap off-chain transactions between participating nodes. </p>
 					<p>To use the Lightning Network, every end user must be connected to enough <strong>well-connected nodes</strong>. That ensures that there will be network paths for every Bitcoin payment.</p>
-					<p><strong>Lightning Hoarder</strong> is a volunteer-run mainnet lightning node. It is trying to become well-connected through balancing and community initiatives like the <a href="https://www.reddit.com/r/TheLightningNetwork/" target="_blank">Reddit Megahub Triangle on /r/TheLightningNetwork</a>. This node tries to use latest LND releases with well-configured settings.</p>
-					<p>This node is run on a HA cluster, on reliable NVMe pools on Ceph rbd, with backups in place. It is backed by batteries and split electricity circuits from other equipment to maintain uptime.</p>
+					<p><strong>Lightning Hoarder</strong> is a volunteer-run mainnet lightning node. It is trying to become well-connected through balancing and community initiatives like the <span title="By linking Routing Nodes together in Liquidity Triangles, we're weaving together a massive cyclic superhub called the Reddit Megahub!" class="info-text">Reddit Megahub Triangle</span> on <a href="https://www.reddit.com/r/TheLightningNetwork/" target="_blank">/r/TheLightningNetwork</a>. This node tries to use latest LND releases with well-configured settings.</p>
+					<p>This node is run on a <span title="High Availability" class="info-text">HA</span> cluster, on reliable NVMe pools on <a href="https://docs.ceph.com/en/latest/rbd/index.html" target="_blank" class="info-text">Ceph rbd</a>, with backups in place. It is backed by batteries and split power circuits from other equipment to maintain uptime.</p>
 					<p>Fees are automatically adjusted to prefer a balanced channel over time. If you are part of the Reddit Megahub, lower fees are applied.</p>
 					<p>Feel free to <strong>open a channel</strong> to this node with the information on the sidebar.</p>
 					<hr>
@@ -92,19 +97,19 @@ svg.inline-icon, img.inline-icon {
 							<li>Channels will be kept open as long as possible</li>
 							<li>Auto-scaled channel fees, low where it matters</li>
 							<li>Low channel commitment reserve</li>
-							<li><strong><a href="https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md" target="_blank">Watchtower-backed</a></strong> channels</li>
-							<li><strong><a href="https://bitcoinops.org/en/topics/multipath-payments/" target="_blank">AMP/ Multipath payments</a> supported</strong>
-							<li><strong><a href="https://bitcoinops.org/en/topics/anchor-outputs/" target="_blank">Anchor outputs</a> supported</strong></li>
-							<li><strong><a href="https://bitcoinops.org/en/topics/large-channels/" target="_blank">WUMBO channels</a> supported</strong></li>
+							<li><strong><a href="https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md" target="_blank" class="info-text">Watchtower-backed</a></strong> channels</li>
+							<li><strong><a href="https://bitcoinops.org/en/topics/multipath-payments/" target="_blank" class="info-text">AMP/ Multipath payments</a> supported</strong>
+							<li><strong><a href="https://bitcoinops.org/en/topics/anchor-outputs/" target="_blank" class="info-text">Anchor outputs</a> supported</strong></li>
+							<li><strong><a href="https://bitcoinops.org/en/topics/large-channels/" target="_blank" class="info-text">WUMBO channels</a> supported</strong></li>
 							<li>Economical estimate for co-operative closes</li>
-							<li><a href="https://bitcoinops.org/en/topics/spontaneous-payments/">KeySend / Spontaneous payments</a> enabled (send some sats!)</li>
+							<li><a href="https://bitcoinops.org/en/topics/spontaneous-payments/" class="info-text">KeySend / Spontaneous payments</a> enabled (send some sats!)</li>
 						</ul>
 					</p>
 					<hr>
 					<h4>Contact Details</h4>
 					<p><a href="https://github.com/WeebDataHoarder/ln.lightninghoarder.net/issues/new/choose" class="btn btn-light" target="_blank"><object type="image/svg+xml" data="./github.svg" class="inline-icon"></object> Contact Node Operator on GitHub</a> <a href="https://yalls.org/hashcash/37c7df7f-5132-4176-aa00-bb65900a98d1/" class="btn btn-dark" target="_blank"><svg class="inline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z"></path></svg> Contact Node Operator on Y'alls</a></p>
 					<p>You can contact for channel requests, force-close requests, any manual recovery instructions or other issues with this node.</p>
-					<p>Part of the <a href="https://www.node-recovery.com/" target="_blank">Node Recovery initiative</a>.</p>
+					<p>Part of the <a href="https://www.node-recovery.com/" target="_blank" class="info-text">Node Recovery initiative</a>.</p>
 				</article>
 				<aside class="col-sm-4 flex-first flex-md-unordered">
 					<h3>Node Info (mainnet)</h3>
@@ -143,12 +148,12 @@ svg.inline-icon, img.inline-icon {
 				const section = document.getElementById("extra-information");
 				{
 					const p = document.createElement("p");
-					p.append("Total capacity: " + (data.total_capacity / 100000000).toFixed(8) + " BTC");
+					p.append("Total channel capacity: " + (data.total_capacity / 100000000).toFixed(8) + " BTC");
 					section.append(p);
 				}
 				{
 					const p = document.createElement("p");
-					p.append("Total peers: " + (data.total_peers));
+					p.append("Total channel peers: " + (data.total_peers));
 					section.append(p);
 				}
 				{
