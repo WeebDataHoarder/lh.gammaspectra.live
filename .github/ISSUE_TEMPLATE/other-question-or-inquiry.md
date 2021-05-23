@@ -7,10 +7,10 @@ assignees: WeebDataHoarder
 
 ---
 
-**Your Node**
+## Your Node
 https://1ml.com/node/[your_node_publickey]
 
 ---
 
-**Inquiry**
+### Inquiry
 Write your inquiry here

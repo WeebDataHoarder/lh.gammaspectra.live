@@ -7,13 +7,13 @@ assignees: WeebDataHoarder
 
 ---
 
-**Your Node**
+## Your Node
 https://1ml.com/node/[your_node_publickey]
 
-**Reason of Force-Close**
+### Reason of Force-Close
 Describe why you want to force-close a channel.
 
-**Recovery Checklist**
+### Recovery Checklist
 Before submitting a Force-Close request, all these conditions have to apply to your channel/node.
 
 * [ ] The channel/node has been inactive longer than 3 days and waited.
@@ -24,10 +24,13 @@ Before submitting a Force-Close request, all these conditions have to apply to y
 
 ---
 
-**Proving node identity**
+### Proving node identity
 To know that your node identity is correct, you have these different ways to prove it. Do note your will still have to wait at least 3 days of inactivity.
 
 * Sign a message using your node pubkey: sign a message containing the text `force-close channels with Lightning Hoarder, date [insert date here]`. Then provide this proof (text you signed + signature) as part of the issue.
 * Prove contact details listed on your node name on the network. This can be a website, or social network.
 * Prove contact details listed on [1ML](https://1ml.com/) or [amboss.space](https://amboss.space/) under your node details. This can be a website, or social network.
 * Alternatively, if the node has been inactive for longer than 14 days force-channel requests may be issued at the discretion of the node operator upon request.
+
+### Additional notes
+Add any other notes here.

@@ -7,12 +7,12 @@ assignees: WeebDataHoarder
 
 ---
 
-**Your Node**
+## Your Node
 https://1ml.com/node/[your_node_publickey]
 
 Describe what your node is for, activity, and why you want incoming liquidity.
 
-**Feature List**
+### Feature List
 Mark any that you have setup and enabled. These are not required items.
 
 * [ ] [Anchor outputs / anchor commitments](https://bitcoinops.org/en/topics/anchor-outputs/)
@@ -25,7 +25,7 @@ Mark any that you have setup and enabled. These are not required items.
 
 ---
 
-**⚠️ Safety Checklist ⚠️**
+### ⚠️ Safety Checklist ⚠️
 These items here are for your own safety and not require recovery assistance in case the worst happens to any node.
 
 * [ ] Backed up (or written down) own node seed / entropy: _BIP39_, _[aezeed (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/safety.md#aezeed)_, _[hsm_secret (c-lightning)](https://github.com/ElementsProject/lightning/blob/master/doc/BACKUP.md#hsm_secret)_
@@ -34,10 +34,10 @@ These items here are for your own safety and not require recovery assistance in 
 
 ---
 
-**Liquidity Details**
+### Liquidity Details
 * **Amount in satoshi**: 1000000 (minimum 1M satoshi, maximum depends)
 * **Expected duration**: 3 months
 * **Public channel**: Yes/No (public is a routing channel visible to everyone, private channels do not get announced)
 
-**Additional notes**
+### Additional notes
 Add any other notes here.
