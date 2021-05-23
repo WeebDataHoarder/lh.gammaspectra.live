@@ -1,6 +1,7 @@
 ---
 name: Channel Force-Close request
-about: Ask for a force-close of an inactive channel due to data loss or other reason
+about: Ask for a force-close of an inactive channel due to data loss or other reason,
+  to recover funds
 title: "[CHANNEL-CLOSE]"
 labels: DLP, channel-close
 assignees: WeebDataHoarder
@@ -19,6 +20,7 @@ Before submitting a Force-Close request, all these conditions have to apply to y
 * [ ] The channel/node has been inactive longer than 3 days and waited.
 * [ ] Backups of your own node seed / entropy exist: own node seed / entropy: _BIP39_, _[aezeed (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/safety.md#aezeed)_, _[hsm_secret (c-lightning)](https://github.com/ElementsProject/lightning/blob/master/doc/BACKUP.md#hsm_secret)_
 * [ ] Tried to issue a force-close via Static Channel Backups / Static Remote Key feature (or do not have them): _[SCBs (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/safety.md#static-channel-backups-scbs)_, _[file-based backups (c-lightning)](https://github.com/ElementsProject/lightning/blob/master/doc/BACKUP.md)_
+* [ ] Followed any other recovery instructions listed on your node software documentation: _[lnd recovery](https://github.com/lightningnetwork/lnd/blob/master/docs/recovery.md)_, _[c-lightning Loss](https://github.com/ElementsProject/lightning/blob/master/doc/FAQ.md#loss)_
 * [ ] _(lnd only)_ Tried using [chantools](https://github.com/guggero/chantools) to create a "fake" channel.backup using information existing from historic backups / [1ML.com](https://1ml.com/) and tried recovery: [chantools fakechanbackup Documentation](https://github.com/guggero/chantools/blob/master/doc/chantools_fakechanbackup.md)
 * [ ] Understand that the force-close transaction cannot send funds anywhere but what was agreed with your node when it was online.
 
