@@ -28,6 +28,7 @@ Mark any that you have setup and enabled. These are not required items, just che
 ### ⚠️ Safety Checklist ⚠️
 These items here are for your own safety and not require recovery assistance in case the worst happens to any node.
 
+* [ ] Regularly check and upgrade node software for new features / patches
 * [ ] Backed up (or written down) own node seed / entropy: _BIP39_, _[aezeed (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/safety.md#aezeed)_, _[hsm_secret (c-lightning)](https://github.com/ElementsProject/lightning/blob/master/doc/BACKUP.md#hsm_secret)_
 * [ ] Configured `Static Channel Backups (SCB, channel.backup)` / `Static Remote Key` and they are automatically stored elsewhere: _[SCBs (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/safety.md#static-channel-backups-scbs)_, _[file-based backups (c-lightning)](https://github.com/ElementsProject/lightning/blob/master/doc/BACKUP.md)_
 * [ ] _(Optional)_ Configured a Watchtower Client: _[Altruist Watchtower (lnd)](https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md)_, _[BOLT13 / teos (c-lightning)](https://github.com/talaia-labs/python-teos/tree/master/watchtower-plugin)_
