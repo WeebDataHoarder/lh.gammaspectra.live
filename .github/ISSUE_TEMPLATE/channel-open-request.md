@@ -22,6 +22,7 @@ Mark any that you have setup and enabled. These are not required items, just che
 * [ ] Low channel commitment reserve
 * [ ] Battery-backed
 * [ ] Redundant internet uplink
+* [ ] 24/7 operation
 
 ---
 
