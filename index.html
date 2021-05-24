@@ -8,6 +8,7 @@
 		<link rel="icon" href="./logo.svg" type="image/svg+xml">
 		<link rel="alternate icon" href="./favicon.png" type="image/png">
 		<link href="https://ln.lightninghoarder.net/" rel="canonical">
+		<link rel="preload" href="./cytoscape.min.js" as="script">
 		<link href="./bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
 body {
@@ -73,11 +74,24 @@ svg.inline-icon, img.inline-icon {
 	text-decoration: underline;
 	text-decoration-style: dotted;
 }
+
+#cy {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.7;
+}
+
+main {
+	background: rgba(221, 221, 221, 0.7);
+}
 		</style>
 	</head>
 	<body>
+	<div id="cy"></div>
 		<header class="jumbotron text-center">
-			<h1><a href="https://lh.gammaspectra.live/" rel="home"><object type="image/svg+xml" data="./logo.svg" class="inline-icon"></object> Lightning Hoarder</a></h1>
+			<h1><a href="https://ln.lightninghoarder.net/" rel="home"><object type="image/svg+xml" data="./logo.svg" class="inline-icon"></object> Lightning Hoarder</a></h1>
 		</header>
 		<main class="container mb-0">
 			<div class="row justify-content-center">
@@ -149,6 +163,16 @@ svg.inline-icon, img.inline-icon {
 				document.execCommand("copy");
 			}
 			
+			async function fetchJson(url){
+				const response = await fetch(url, {
+					method: "GET",
+					mode: "cors",
+					credentials: "omit",
+					referrerPolicy: "no-referrer"
+				});
+				return await response.json();
+			}
+			
 			function fillInformation(data){
 				const section = document.getElementById("extra-information");
 				{
@@ -173,12 +197,7 @@ svg.inline-icon, img.inline-icon {
 				}
 			}
 			
-			fetch("https://ln-scores.prod.lightningcluster.com/availability/v1/btc_summary.json", {
-				method: "GET",
-				mode: "cors",
-				credentials: "omit",
-				referrerPolicy: "no-referrer"
-			}).then(response => response.json()).then((data) => {
+			fetchJson("https://ln-scores.prod.lightningcluster.com/availability/v1/btc_summary.json").then((data) => {
 				let nodeData = null;
 				
 				for(let _class of ["scored", "stable", "unconnectable", "unstable"]){
@@ -193,6 +212,114 @@ svg.inline-icon, img.inline-icon {
 					fillInformation(nodeData);
 				}
 			});
+		</script>
+		<script type="text/javascript" src="./cytoscape.min.js"></script>
+		<script type="text/javascript">
+		function invertColor(hex, bw) {
+		    if (hex.indexOf('#') === 0) {
+			hex = hex.slice(1);
+		    }
+		    // convert 3-digit hex to 6-digits.
+		    if (hex.length === 3) {
+			hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+		    }
+		    if (hex.length !== 6) {
+			throw new Error('Invalid HEX color.');
+		    }
+		    var r = parseInt(hex.slice(0, 2), 16),
+			g = parseInt(hex.slice(2, 4), 16),
+			b = parseInt(hex.slice(4, 6), 16);
+		    if (bw) {
+			// http://stackoverflow.com/a/3943023/112731
+			return (r * 0.299 + g * 0.587 + b * 0.114) > 186
+			    ? '#000000'
+			    : '#FFFFFF';
+		    }
+		    // invert color components
+		    r = (255 - r).toString(16);
+		    g = (255 - g).toString(16);
+		    b = (255 - b).toString(16);
+		    // pad each with zeros and return
+		    return "#" + padZero(r) + padZero(g) + padZero(b);
+		}
+		Promise.all([
+		  fetchJson("https://explorer.acinq.co/nodes"),
+		  fetchJson("https://explorer.acinq.co/channels")
+		]).then((dataArray) => {
+			const wantedNodes = {};
+			wantedNodes[NODE_PUBLIC_KEY] = true;
+			const nodes = [];
+			const edges = [];
+			for(let channel of dataArray[1]){
+				if(channel.source === NODE_PUBLIC_KEY){
+					edges.push({data: channel});
+					wantedNodes[channel.target] = true;
+				}else if (channel.target === NODE_PUBLIC_KEY){
+					edges.push({data: channel});
+					wantedNodes[channel.source] = true;
+				}
+			}
+			
+			for(let channel of dataArray[1]){
+				if(channel.source in wantedNodes && channel.target in wantedNodes){
+					const isMine = (channel.source === NODE_PUBLIC_KEY || channel.target === NODE_PUBLIC_KEY);
+					channel.size = isMine ? 2 : 1;
+					channel.color = isMine ? "#999" : "#bbb";
+					edges.push({data: channel});
+				}
+			}
+			
+			for(let node of dataArray[0]){
+				if(node.id in wantedNodes){
+					nodes.push({data: {
+						id: node.id,
+						alias: node.alias,
+						color: node.color,
+						textColor: invertColor(node.color.substr(1), true),
+						isseed: node.id === NODE_PUBLIC_KEY
+					}});
+				}
+			}
+			
+			console.log(wantedNodes);
+			console.log(nodes);
+			console.log(edges);
+			
+			const cy = cytoscape({
+				container: document.getElementById("cy"),
+				boxSelectionEnabled: false,
+				autounselectify: true,
+				elements: {
+					nodes: nodes,
+					edges: edges
+				},
+				style: [
+					    {
+					      selector: 'node',
+					      style: {
+					      	'text-valign': 'center',
+						'color': 'data(textColor)',
+						'text-outline-width': 1,
+						'text-outline-color': 'data(color)',
+						'background-color': 'data(color)',
+						'content': 'data(alias)'
+					      }
+					    },
+
+					    {
+					      selector: 'edge',
+					      style: {
+						'width': 'data(size)',
+						'line-color': 'data(color)',
+					      }
+					    }
+					],
+				layout: {
+					name: "random",
+					animate: false
+				}
+			});
+		});
 		</script>
 </body>
 
