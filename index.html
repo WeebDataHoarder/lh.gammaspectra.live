@@ -40,12 +40,12 @@ h1 img {
 
 textarea {
 	width: 100%;
-	height: 60px;
-	font-size: 12px;
+	height: 70px !important;
+	font-size: 12px !important;
 }
 
 textarea#clearnet-field {
-	height: 40px;
+	height: 50px !important;
 }
 
 .jumbotron {
@@ -142,11 +142,12 @@ svg.inline-icon, img.inline-icon {
 				<aside class="col-sm-4 flex-first flex-md-unordered">
 					<h3>Node Information (mainnet)</h3>
 					<p id="qrcode"><img src="./qrcode.png"/></p>
-					<p><textarea id="tor-field" readonly="" onclick="this.focus();this.select()">02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae@bllbkxh4k372lttsdnwgm54csziw3sham5y3qbqn5yq2fo3pm2gpapqd.onion:9735</textarea>
-					<input type="button" value="Copy TOR" onclick="copyField(&#39;code&#39;);this.disabled=true;this.value=&#39;Copied&#39;;"></p>
-					<p style="display: none"><textarea id="clearnet-field" readonly="" onclick="this.focus();this.select()"></textarea>
-					<input type="button" value="Copy Clearnet" onclick="copyField(&#39;code&#39;);this.disabled=true;this.value=&#39;Copied&#39;;"></p>
+					<p><textarea class="form-control" id="tor-field" readonly="" onclick="this.focus();this.select()">02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae@bllbkxh4k372lttsdnwgm54csziw3sham5y3qbqn5yq2fo3pm2gpapqd.onion:9735</textarea>
+					<input class="btn btn-sm btn-secondary" type="button" value="Copy TOR" onclick="copyField(&#39;code&#39;);this.disabled=true;this.value=&#39;Copied&#39;;"></p>
+					<p style="display: none"><textarea class="form-control" id="clearnet-field" readonly="" onclick="this.focus();this.select()"></textarea>
+					<input class="btn btn-sm btn-secondary" type="button" value="Copy Clearnet" onclick="copyField(&#39;code&#39;);this.disabled=true;this.value=&#39;Copied&#39;;"></p>
 					<p>Tor connection preferred.</p>
+					<p><a href="https://github.com/WeebDataHoarder/ln.lightninghoarder.net/issues/new?assignees=WeebDataHoarder&labels=channel-request&template=channel-open-request.md&title=%5BCHANNEL-REQUEST%5D" target="_blank" class="btn btn-sm btn-block btn-light"><object type="image/svg+xml" data="./github.svg" class="inline-icon"></object> Channel Open Request</a></p>
 					<hr/>
 					<p>Minimum channel size: 250,000 satoshi</p>
 					<p>Recommended channel size: 1,000,000+ satoshi</p>
@@ -162,7 +163,7 @@ svg.inline-icon, img.inline-icon {
 			</div>
 		</main>
 		<footer class="jumbotron text-center">
-			<p><a href="https://github.com/WeebDataHoarder/ln.lightninghoarder.net" target="_blank">Site source on GitHub</a> - Read more about Lightning Network on <a href="https://docs.lightning.engineering/the-lightning-network/lightning-overview" target="_blank">docs.lightning.engineering</a>, <a href="https://bitcoinops.org/en/topics/" target="_blank">Bitcoin Optech</a> or <a href="https://www.lopp.net/lightning-information.html" target="_blank">lopp.net</a></p>
+			<p><a href="https://github.com/WeebDataHoarder/ln.lightninghoarder.net" target="_blank">Site source on GitHub</a> - Read more about Lightning Network on <a href="https://docs.lightning.engineering/the-lightning-network/lightning-overview" target="_blank">docs.lightning.engineering</a>, <a href="https://bitcoinops.org/en/topics/" target="_blank">Bitcoin Optech</a>, <a href="https://www.lopp.net/lightning-information.html" target="_blank">lopp.net</a> or <a href="https://lightning.network/" target="_blank">lightning.network</a></p>
 		</footer>
 		
 		<script type="text/javascript" src="./qrcode.min.js"></script>
