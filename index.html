@@ -118,7 +118,7 @@ main {
 							<li>Tor & Clearnet addresses</li>
 							<li>Channels will be kept open as long as possible</li>
 							<li><span title="Currently using charge-lnd for fee management" class="info-text">Auto-scaled channel fees</span>, low where it matters</li>
-							<li>Low channel commitment <span title="Currently 0.5%" class="info-text">reserve</span></li>
+							<li>Low channel <span title="Reserve used for channel closures / stake in the game. Currently set to 0.5%" class="info-text">commitment fee reserve</span></li>
 							<li><strong><a href="https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md" target="_blank" class="info-text" title="Watchtowers will automatically handle the recovery and punishment process for users in the case of a channel breach while disconnected from the internet for an extended period of time
 ">Watchtower-backed</a></strong> channels</li>
 							<li><strong><a href="https://bitcoinops.org/en/topics/multipath-payments/" target="_blank" class="info-text" title="Multipath payments are LN payments split into two or more parts and sent using a different path for each part.
@@ -128,7 +128,7 @@ main {
 							<li><strong><a href="https://bitcoinops.org/en/topics/large-channels/" target="_blank" class="info-text" title="Large channels are LN payment channels where both peers send the parameter option_support_large_channel and which can be funded with a balance over 0.16777216 BTC.
 
 ">WUMBO channels</a> supported</strong></li>
-							<li><span title="ECONOMIC estimate mode, current target of 24 blocks from co-op close" class="info-text">Economical estimate</a> for co-operative closes</li>
+							<li><span title="ECONOMIC estimate mode, current target of 24 blocks from co-op close" class="info-text">Economical estimate</span> for co-operative closes</li>
 							<li><a href="https://bitcoinops.org/en/topics/spontaneous-payments/" class="info-text" title="Spontaneous payments is the ability of one LN node to pay another node without receiving an invoice first">KeySend / Spontaneous payments</a> enabled (send some sats!)</li>
 						</ul>
 					</p>
