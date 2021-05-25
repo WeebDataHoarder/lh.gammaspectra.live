@@ -115,10 +115,10 @@ svg.inline-icon, img.inline-icon {
 							<li>Using latest version of <em>LND</em></li> 
 							<li>Tor & Clearnet addresses</li>
 							<li>Channels will be kept open as long as possible</li>
-							<li><span title="Currently using charge-lnd for fee management" class="info-text">Auto-scaled channel fees</span>, low where it matters</li>
+							<li><span title="Currently using charge-lnd for fee management. Fees get reduced the more clogged a channel is to keep it at balance. Reddit Megahub channel fees are around 2x to 10x lower. Small channels get charged less fees" class="info-text">Auto-scaled channel fees</span>, low where it matters</li>
 							<li>Low channel <span title="Reserve used for channel closures / stake in the game. Currently set to 0.5%" class="info-text">commitment fee reserve</span></li>
 							<li><strong><a href="https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md" target="_blank" class="info-text" title="Watchtowers will automatically handle the recovery and punishment process for users in the case of a channel breach while disconnected from the internet for an extended period of time
-">Watchtower-backed</a></strong> channels</li>
+">Watchtower-backed</a> channels</strong></li>
 							<li><strong><a href="https://bitcoinops.org/en/topics/multipath-payments/" target="_blank" class="info-text" title="Multipath payments are LN payments split into two or more parts and sent using a different path for each part.
 
 ">AMP / Multipath payments</a> supported</strong>
@@ -239,7 +239,8 @@ svg.inline-icon, img.inline-icon {
 				}
 			}
 			
-			fetchJson("https://ln-scores.prod.lightningcluster.com/availability/v1/btc_summary.json").then((data) => {
+			const btcSummaryPromise = fetchJson("https://ln-scores.prod.lightningcluster.com/availability/v1/btc_summary.json");
+			btcSummaryPromise.then((data) => {
 				let nodeData = null;
 				
 				for(let _class of ["scored", "stable", "unconnectable", "unstable"]){
@@ -287,7 +288,7 @@ svg.inline-icon, img.inline-icon {
 		Promise.all([
 		  fetchJson("https://explorer.acinq.co/nodes"),
 		  fetchJson("https://explorer.acinq.co/channels")
-		]).then((dataArray) => {
+		]).then(async (dataArray) => {
 			const wantedNodes = {};
 			wantedNodes[NODE_PUBLIC_KEY] = true;
 			const nodes = [];
@@ -321,12 +322,23 @@ svg.inline-icon, img.inline-icon {
 				p.style.display = "";
 			}
 			
+			const nodeNames = {};
+			
+			let bData = await btcSummaryPromise;
+			for(let _class of ["scored", "stable", "unconnectable", "unstable"]){
+				for(let node of dataArray[0]){
+					if(node.id in wantedNodes && node.id in bData[_class]){
+						nodeNames[node.id] = bData[_class][node.id].alias;
+					}					
+				}
+			}
+			
 			for(let node of dataArray[0]){
 				if(node.id in wantedNodes){
 					const isMine = node.id === NODE_PUBLIC_KEY;
 					nodes.push({data: {
 						id: node.id,
-						alias: node.alias,
+						alias: node.id in nodeNames ? nodeNames[node.id] : node.alias,
 						color: isMine ? "#F2A900" : node.color,
 						textColor: isMine ? "#000000" : invertColor(node.color, true),
 						isseed: isMine
