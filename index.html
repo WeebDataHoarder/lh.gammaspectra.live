@@ -12,7 +12,21 @@
 		<link rel="preload" href="./qrcode.min.js" as="script">
 		<link href="./bootstrap.min.css" rel="stylesheet">
 		<style type="text/css">
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local("Open Sans"), url(./OpenSans-Regular.woff2) format('woff2');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    src: local("Open Sans"), url(./OpenSans-SemiBold.woff2) format('woff2');
+}
+
 body {
+	font-family: "Open Sans", sans-serif;
 	background: #ddd;
 	z-index : 999;
 }
@@ -24,13 +38,20 @@ h1 {
 h1 a {
 	text-decoration: none !important;
 	color: #f2a900;
-	text-shadow: 0px 1px 2px #000, 0px -1px 2px #000, 1px 0px 2px #000, -1px 0px 2px #000;
-	background: rgba(221, 221, 221, 0.8);
+	text-shadow: -1px -1px 2px #000, 1px -1px 2px #000, -1px 1px 2px #000, 1px 1px 2px #000;
+	background: rgba(221, 221, 221, 0.6);
 	border-radius: 10px;
 }
 
 h1 a:hover {
 	color: #f2a900;
+}
+
+body p {
+	text-shadow: -1px -1px 2px #ddd, 1px -1px 2px #ddd, -1px 1px 2px #ddd, 1px 1px 2px #ddd;
+}
+body .btn {
+	text-shadow: none;
 }
 
 h1 img {
@@ -54,7 +75,7 @@ textarea#clearnet-field {
 
 main {
 	display: block;
-	background: rgba(221, 221, 221, 0.7);
+	background: rgba(221, 221, 221, 0.6);
 }
 
 p a {
@@ -169,6 +190,43 @@ svg.inline-icon, img.inline-icon {
 		<script type="text/javascript" src="./qrcode.min.js"></script>
 		<script type="text/javascript">
 			const NODE_PUBLIC_KEY = "02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae";
+			
+			const SPECIAL_NODES = {
+				//Reddit Megahub Nodes
+				"03dd57a095459084935089a8d4326fa4e9e09adbfc8bc568e47051ac74beffc16f": "reddit",
+				"03f360457d29f50a1fe2d5b2e603207377f1676b335546622c182b086259615755": "reddit",
+				"0382b31dcff337311bf919411c5073c9c9a129890993f94f4a16eaaeffd91c7788": "reddit",
+				"0337eb3ad7b4db8f6cc50da93eecbae2e83e735b37fca190750cc2d2573f4ddbfa": "reddit",
+				"032434517e28f7b51665a525d5e11fa493bd4e30a59883b8156c2be4085f4aaf70": "reddit",
+				"033937d2f01d5fbb714e065588a9fa74c88df011302924d9ea54ab2b1e8c05ccc0": "reddit",
+				"038fb77fd39a5d0782027a420571482d9dbef1a24f129bbafc487ac084a2251e5f": "reddit",
+				"036b3df63dd7fc5a131334cea09d387f5d76bb688eeb8b1124c865fa699fd3d02c": "reddit",
+				"03236ceb7cd6689ebdb35e91879e7f1ebeb03ff6455731dff63e57b72892827b99": "reddit",
+				"0369a6185476b5d0372f526bc99d7614ff83fc0bfb11821b6e3c978ee64bcc865c": "reddit",
+				"020783a7022993d2bbd1de05aa070d92bc58759452247b4586d542fb565e3dcf59": "reddit",
+				"033878501f9a4ce97dba9a6bba4e540eca46cb129a322eb98ea1749ed18ab67735": "reddit",
+				"03df2dd6ba57bf58e55c76a876e6af1c3d66434e9cc41d74d5ed934dcb162562bd": "reddit",
+				"021f1beed0a32fb740e9c8ea12702dd4371b444a6464368d93a2957b95f8cd2db1": "reddit",
+				"03d54a22d41e2ca4309f26a9b27113309024debd4ac6a1c1a72b91013f8b6978ef": "reddit",
+				"02dd6a22eb913b904daea7f950d1d3d1a90f8e447c400bb2e5a6521f2435756b28": "reddit",
+				"03b75897555da10fc84c93fd1543f4e166a025582057dd58a97c029baba2deb1ab": "reddit",
+				"02dde1de894345d7167db18ff92266fa7302ae018fbea3b12948b3a50cf253f6db": "reddit",
+				"02a20247f515d978cbf9e9ce6a4287b5931d724068b7b88bbaead6380db3dd8e9a": "reddit",
+				"03d933d970d76846d1e614fe7c819053ca30c703ef2482b8b97b9b7a4f44e2a02a": "reddit",
+				"0337579aadc81356ed7f32587565e4c2a7f8d1561be8cc3bd976cbc6a409a4a71b": "reddit",
+				"033719864ecae30f766a05f84dc74a88af6a268c5b8289e6b31bad4d9e635f20de": "reddit",
+				"038423eea4386705c6427487ca0653d13b5f170621b6a9c7489627c4f3f95cf021": "reddit",
+				"0359baa0769dfb13628dca7ee773f0cd6d02f00964d2bb13a7c728a4c4df9c1663": "reddit",
+				
+				"03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f": "acinq",
+				"0217890e3aad8d35bc054f43acc00084b25229ecff0ab68debd82883ad65ee8266": "1ml",
+				
+				//LNBIG
+				"032679fec1213e5b0a23e066c019d7b991b95c6e4d28806b9ebd1362f9e32775cf": "lnbig", //lnd-03
+			};
+			
+			SPECIAL_NODES[NODE_PUBLIC_KEY] = "main";
+			
 			function copyField(id) {
 				var field = document.getElementById(id);
 				field.focus();
@@ -309,8 +367,9 @@ svg.inline-icon, img.inline-icon {
 			for(let channel of dataArray[1]){
 				if(channel.source in wantedNodes && channel.target in wantedNodes){
 					const isMine = (channel.source === NODE_PUBLIC_KEY || channel.target === NODE_PUBLIC_KEY);
+					const isRedditLink = (channel.source in SPECIAL_NODES && SPECIAL_NODES[channel.source] === "reddit" && channel.target in SPECIAL_NODES && SPECIAL_NODES[channel.target] === "reddit")
 					channel.size = isMine ? 2 : 1;
-					channel.color = isMine ? "#999" : "#bbb";
+					channel.color = isRedditLink ? "#FF9770" : (isMine ? "#999" : "#bbb");
 					edges.push({data: channel});
 				}
 			}
@@ -341,7 +400,8 @@ svg.inline-icon, img.inline-icon {
 						alias: node.id in nodeNames ? nodeNames[node.id] : node.alias,
 						color: isMine ? "#F2A900" : node.color,
 						textColor: isMine ? "#000000" : invertColor(node.color, true),
-						isseed: isMine
+						isseed: isMine,
+						kind: node.id in SPECIAL_NODES ? SPECIAL_NODES[node.id] : ""
 					}});
 				}
 			}
@@ -359,16 +419,37 @@ svg.inline-icon, img.inline-icon {
 					      selector: 'node',
 					      style: {
 					      	'text-valign': 'center',
-					      	'shape': function(node){ return node.data().id === NODE_PUBLIC_KEY ? "star" : "ellipse" },
-					      	'width': function(node){ return node.data().id === NODE_PUBLIC_KEY ? 80 : 48 },
-					      	'height': function(node){ return node.data().id === NODE_PUBLIC_KEY ? 80 : 48 },
+					      	'shape': "ellipse",
+					      	'width': function(node){ return node.data().kind === "main" ? 80 : 48 },
+					      	'height': function(node){ return node.data().kind === "main" ? 80 : 48 },
 						'color': 'data(textColor)',
-						'font-size': function(node){ return node.data().id === NODE_PUBLIC_KEY ? 15 : 11 },
-						'text-outline-width': function(node){ return node.data().id === NODE_PUBLIC_KEY ? 2 : 1 },
+						'font-size': function(node){ return node.data().kind === "main" ? 15 : 11 },
+						'text-outline-width': function(node){ return node.data().kind === "main" ? 3 : 2 },
 						'text-outline-color': 'data(color)',
 						'text-outline-opacity': 0.8,
 						'background-color': 'data(color)',
 						'background-opacity': 0.8,
+						'background-image': function(node){
+						
+							switch(node.data().kind){
+								case "reddit":
+									return "./reddit.svg";
+								case "acinq":
+									return "./acinq.svg";
+								case "1ml":
+									return "./1ml.png";
+								case "lnbig":
+									return "./lnbig.png";
+								case "main":
+									return "./logo.svg";
+								default:
+									return null;
+							}						
+						},
+
+						'background-image-containment': 'over',
+						'background-image-opacity': 0.8,
+						'background-fit': 'contain',
 						'content': 'data(alias)'
 					      }
 					    },
