@@ -360,7 +360,6 @@ svg.inline-icon, img.inline-icon {
 			const edges = [];
 			
 			let mineChannels = 0;
-			
 			for(let channel of dataArray[1]){
 				if(channel.source === NODE_PUBLIC_KEY){
 					wantedNodes[channel.target] = true;
@@ -371,12 +370,19 @@ svg.inline-icon, img.inline-icon {
 				}
 			}
 			
+			for(let node of dataArray[0]){
+				if(node.id in wantedNodes && node.color.toLowerCase() === "#ff4500" && !(node.id in SPECIAL_NODES)){
+					SPECIAL_NODES[node.id] = "reddit";
+				}
+			}
+			
+			
 			for(let channel of dataArray[1]){
 				if(channel.source in wantedNodes && channel.target in wantedNodes){
 					const isMine = (channel.source === NODE_PUBLIC_KEY || channel.target === NODE_PUBLIC_KEY);
 					const isRedditLink = (channel.source in SPECIAL_NODES && SPECIAL_NODES[channel.source] === "reddit" && channel.target in SPECIAL_NODES && SPECIAL_NODES[channel.target] === "reddit")
 					channel.size = isMine ? 2 : 1;
-					channel.color = isRedditLink ? "#FF9770" : (isMine ? "#999" : "#bbb");
+					channel.color = isRedditLink ? "#ff4500" : (isMine ? "#999" : "#bbb");
 					edges.push({data: channel});
 				}
 			}
@@ -405,7 +411,7 @@ svg.inline-icon, img.inline-icon {
 					nodes.push({data: {
 						id: node.id,
 						alias: node.id in nodeNames ? nodeNames[node.id] : node.alias,
-						color: isMine ? "#F2A900" : node.color,
+						color: isMine ? "#f2a900" : node.color,
 						textColor: isMine ? "#000000" : invertColor(node.color, true),
 						isseed: isMine,
 						kind: node.id in SPECIAL_NODES ? SPECIAL_NODES[node.id] : ""
@@ -481,7 +487,7 @@ svg.inline-icon, img.inline-icon {
 					directed: false,
 					circle: true,
 					padding: 10,
-					spacingFactor: 0.6,
+					spacingFactor: 0.4,
 					minNodeSpacing: 20,
 					avoidOverlap: true,
 					levelWidth: function( nodes ){ // the variation of concentric values in each level
