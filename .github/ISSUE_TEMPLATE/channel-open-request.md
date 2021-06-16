@@ -37,7 +37,7 @@ These items here are for your own safety and not require recovery assistance in 
 ---
 
 ### Liquidity Details
-* **Amount in satoshi**: 1000000 (minimum 1M satoshi, maximum depends)
+* **Amount in satoshi**: 2000000 (minimum 2M satoshi, maximum depends)
 * **Expected duration**: 3 months
 * **Public channel**: Yes/No (public is a routing channel visible to everyone, private channels do not get announced)
 
