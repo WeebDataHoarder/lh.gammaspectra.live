@@ -133,11 +133,12 @@ svg.inline-icon, img.inline-icon {
 					<h4>Features</h4>
 					<p>
 						<ul>
-							<li>Using latest version of <em>LND</em></li> 
+							<li>Using latest version of <em>LND</em>, with <a title="Several patches to mainline lnd added. Allows setting channel fee reserve, and having a default delivery address for channel closure / sweeping / upfront-shutdown-script, instead of the default node wallet." class="info-text" href="https://github.com/WeebDataHoarder/lnd" target="_blank">custom patches</a></li> 
 							<li>Tor & Clearnet addresses</li>
 							<li>Channels will be kept open as long as possible</li>
+							<li><span title="BOLT2 upfront shutdown scripts, where an address is specified on channel opening and is locked as the destination of funds on channel closure. This enhances security in case of takeover. In addition, thanks to custom patches, an external cold-storage address is specified for all cases, including channels opened from this peer side, or remote openings, instead of defaulting to default node wallet. This is also the case for HTLC or force-close sweeps." class="info-text">Upfront Shutdown Script</span> supported and enabled</li>
 							<li><span title="Currently using charge-lnd for fee management. Fees get reduced the more clogged a channel is to keep it at balance. Reddit Megahub channel fees are around 2x to 10x lower. Small channels get charged less fees" class="info-text">Auto-scaled channel fees</span>, low where it matters</li>
-							<li>Low channel <span title="Reserve used for channel closures / stake in the game. Currently set to 0.5%" class="info-text">commitment fee reserve</span></li>
+							<li>Low channel <span title="Reserve used for channel closures / stake in the game. Defaults to 1%, on standard lnd. Currently set to 0.5%" class="info-text">commitment fee reserve</span></li>
 							<li><strong><a href="https://github.com/lightningnetwork/lnd/blob/master/docs/watchtower.md" target="_blank" class="info-text" title="Watchtowers will automatically handle the recovery and punishment process for users in the case of a channel breach while disconnected from the internet for an extended period of time
 ">Watchtower-backed</a> channels</strong></li>
 							<li><strong><a href="https://bitcoinops.org/en/topics/multipath-payments/" target="_blank" class="info-text" title="Multipath payments are LN payments split into two or more parts and sent using a different path for each part.
@@ -160,7 +161,6 @@ svg.inline-icon, img.inline-icon {
 					<h4>Other Resources</h4>
 					<p><a href="./known-lnd-watchtowers.txt" class="btn btn-dark">👀 Working Watchtower List <em>(lnd)</em></a></p>
 					<p><a href="https://loop.lightninghoarder.net/"><strong>loop.LightningHoarder.net</strong></a>: An on-chain tracker for the <a href="https://lightning.engineering/loop" target="_blank" class="info-text">Loop service</a>.</p>
-					<p><strong>loop.LightningHoarder.net</strong> node: A limited node for the sole purpose of providing competitive liquidity to the <a href="https://lightning.engineering/loop" target="_blank" class="info-text">Loop service</a>. It does not accept new incoming channels to prevent liquidity breakouts.</p>
 				</article>
 				<aside class="col-sm-4 flex-first flex-md-unordered">
 					<h3>Node Information (mainnet)</h3>
@@ -192,7 +192,6 @@ svg.inline-icon, img.inline-icon {
 		<script type="text/javascript" src="./qrcode.min.js"></script>
 		<script type="text/javascript">
 			const NODE_PUBLIC_KEY = "02a4002deca0ad6781b1c55ea5c692faae768fef44e1997c5723cb5393a98709ae";
-			const LOOP_NODE_PUBLIC_KEY = "033590421e6d92e7f8cbc5a56ce95fc73889db89faecf6dc0cf7490e380bf30dfd";
 			
 			const SPECIAL_NODES = {
 				//Reddit Megahub Nodes
@@ -244,7 +243,6 @@ svg.inline-icon, img.inline-icon {
 			};
 			
 			SPECIAL_NODES[NODE_PUBLIC_KEY] = "main";
-			SPECIAL_NODES[LOOP_NODE_PUBLIC_KEY] = "main";
 			
 			function copyField(id) {
 				var field = document.getElementById(id);
@@ -368,7 +366,6 @@ svg.inline-icon, img.inline-icon {
 		]).then(async (dataArray) => {
 			const wantedNodes = {};
 			wantedNodes[NODE_PUBLIC_KEY] = true;
-			wantedNodes[LOOP_NODE_PUBLIC_KEY] = true;
 			const nodes = [];
 			const edges = [];
 			
